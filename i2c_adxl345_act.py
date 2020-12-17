@@ -23,27 +23,27 @@ bus.write_byte_data(0x53,0x2D,0x08) #start measure
 def my_callback(channel):
     global bus
     inter_ = bus.read_byte_data(0x53,0x30)
-    print("here")
+    #print("here")
     if((inter_&0x10)==0x10):
         print("ACT detected\n")
     if((inter_&0x08)==0x08):
         print("INACT detected\n")
-GPIO.add_event_detect(27, GPIO.FALLING, callback=my_callback, bouncetime=300)
+GPIO.add_event_detect(27, GPIO.FALLING, callback=my_callback)
 inter = bus.read_byte_data(0x53,0x30)
 try:
     i=0
     while(True):
         
-        inter = bus.read_byte_data(0x53,0x30)
+        #inter = bus.read_byte_data(0x53,0x30)
         
         #print(bin(inter))
         #print("inter: ",bin(inter))
         
-        if((inter&0x10)==0x10):
-            print("ACT detected",i)
+        #if((inter&0x10)==0x10):
+        #    print("ACT detected",i)
             #print("inter: ",bin(inter))
-        if((inter&0x08)==0x08):
-            print("INACT detected",i)
+        #if((inter&0x08)==0x08):
+         #   print("INACT detected",i)
         
         sleep(0.1)
 except KeyboardInterrupt:
